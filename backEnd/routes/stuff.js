@@ -1,12 +1,14 @@
 const express = require ('express')
-const router = express.Router()
+
 
 const stuffCtrl = require ('../controllers/stuff')
+const auth = require('../middleware/auth')
 
-router.post('/', stuffCtrl.createBook);
-router.post('/:id/rating', stuffCtrl.createRating);
-router.put('/:id', stuffCtrl.updateBook)
-router.delete('/:id', stuffCtrl.deleteBook)
+const router = express.Router()
+router.post('/', auth, stuffCtrl.createBook);
+router.post('/:id/rating',auth, stuffCtrl.createRating);
+router.put('/:id',auth, stuffCtrl.updateBook)
+router.delete('/:id',auth, stuffCtrl.deleteBook)
 router.get('/', stuffCtrl.readAllBook);
 router.get('/bestrating', stuffCtrl.readBestRating);
 router.get('/:id', stuffCtrl.readBook )
