@@ -1,0 +1,10 @@
+dotenv.config();
+
+const app = express();
+
+// Générer une clé secrète sécurisée pour JWT
+const secretKey = crypto.randomBytes(32).toString('hex');
+process.env.JWT_SECRET = secretKey;
+
+// Exemple d'utilisation de la clé secrète
+console.log(`JWT Secret Key: ${process.env.JWT_SECRET}`);

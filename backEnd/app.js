@@ -3,14 +3,15 @@ const mongoose = require('mongoose');
 const stuffRoutes = require ('./routes/stuff')
 const usersRoute = require('./routes/user')
 const path = require('path');
+const dotenv = require('dotenv');
+
+dotenv.config();
 
 mongoose.connect('mongodb+srv://booksTest:M2sQ6XGrlWCGZVfa@books.gmdewuv.mongodb.net/?retryWrites=true&w=majority&appName=Books',
     { useNewUrlParser: true,
       useUnifiedTopology: true })
     .then(() => console.log('Connexion à MongoDB réussie !'))
     .catch(() => console.log('Connexion à MongoDB échouée !'));
-
-
 
 const app = express();
 

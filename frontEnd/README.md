@@ -1,7 +1,24 @@
-# Mon vieux Grimoire
+# FrontEnd Mon Vieux Grimoire
+
+Partie FrontEnd du projet de site de publication et notation de livres 
+Développé avec React
+
+## Pour commencer
+
+Effectuer un git clone du projet global ( Back+Front), puis se rendre dans chacun de ces deux répertoires pour installer les dépendances nécessaires.
+Ci-dessous, vous trouverez les indications pour la partie FrontEnd.
+
+### Pré-requis
+
+Ce qu'il est requis pour commencer avec votre projet...
+
+```
+Installer Node.js. v20.15.11 avec npm 
+```
 
 
-## Comment lancer le projet ? 
+
+## Comment lancer le projet FrontEnd ? 
 
 ### Avec npm
 

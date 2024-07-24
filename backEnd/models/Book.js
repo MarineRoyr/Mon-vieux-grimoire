@@ -15,7 +15,7 @@ const bookSchema = mongoose.Schema({
       },
     }
   ],
-  averageRating: { type: Number, default:0 },
+  averageRating: { type: Number, default:0, required: true},
 });
 
 module.exports = mongoose.model("Book", bookSchema);

@@ -23,6 +23,12 @@
     font-family: "Libre Baskerville", serif;
     font-size: 18px;
     margin-bottom: 22px;
+
+    
+}
+
+.thank {
+text-align: center;
 }
 
 .BookRatingForm form input[type="radio"] {

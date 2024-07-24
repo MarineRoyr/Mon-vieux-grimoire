@@ -3,6 +3,8 @@ const auth = require('../middleware/auth')
 const stuffCtrl = require ('../controllers/stuff')
 const multer = require ('../middleware/multer-config')
 
+// Configuration des routes pour la gestion des livres 
+
 const router = express.Router()
 router.post('/', auth, multer, stuffCtrl.createBook);
 router.post('/:id/rating',auth, stuffCtrl.createRating);
