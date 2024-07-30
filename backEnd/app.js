@@ -1,20 +1,19 @@
 const express = require("express");
-const mongoose = require('mongoose');
 const stuffRoutes = require ('./routes/stuff')
 const usersRoute = require('./routes/user')
 const path = require('path');
 const dotenv = require('dotenv');
 
-// Fait appel aux configurations du fichier.env
-dotenv.config();
+// Importer mongoose
+const mongoose = require('mongoose');
 
+// Utiliser les variables d'environnement
+const mongodbUri = process.env.MONGODB_URI;
 
-// Gère la connexion à mongoose 
-mongoose.connect('mongodb+srv://booksTest:M2sQ6XGrlWCGZVfa@books.gmdewuv.mongodb.net/?retryWrites=true&w=majority&appName=Books',
-    { useNewUrlParser: true,
-      useUnifiedTopology: true })
-    .then(() => console.log('Connexion à MongoDB réussie !'))
-    .catch(() => console.log('Connexion à MongoDB échouée !'));
+// Gère la connexion à mongoose
+mongoose.connect(mongodbUri, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => console.log('Connexion à MongoDB réussie !'))
+  .catch(() => console.log('Connexion à MongoDB échouée !'));
 
 // Initialise l'application Express
 const app = express();
