@@ -5,22 +5,36 @@ require('dotenv').config();
 
 //Controller pour la fonction sign up
 exports.signup = (req, res, next) => {
-    //Hashage du mdp avec bcrypt
-    bcrypt.hash(req.body.password, 10)
+    const { password, email } = req.body;
+
+
+    // Vérification de la validité du mot de passe
+    const passwordRegex = /^(?=.*[A-Z]).{8,}$/;
+    if (!passwordRegex.test(password)) {
+        console.log('Password validation failed');
+        return res.status(400).json({ message: "Le mot de passe doit contenir au moins 8 caractères et une majuscule" });
+    }
+
+    // Hashage du mot de passe avec bcrypt
+    bcrypt.hash(password, 10)
         .then(hash => {
-            //On fait appel à notre modèle mongoose User et on lui envoie les infos reçues du client
-            const user = new User ({
-                email: req.body.email,
+            const user = new User({
+                email: email,
                 password: hash
             });
-            // On enregistre l'utilisateur dans la base de donnée
-        user.save()
-            .then(() => res.status(201).json ({ message: 'Utilisateur créé'}))
-            .catch(error => res.status(400).json({error,  message : "Problème d'enregistrement de l'utilisateur" }));
-        })
-        .catch(error => res.status(500).json({error,  message : "Problème à la création du compte utilisateur" }));
-};
 
+            user.save()
+                .then(() => res.status(201).json({ message: 'Utilisateur créé' }))
+                .catch(error => {
+                    console.error('Erreur lors de l\'enregistrement de l\'utilisateur:', error);
+                    res.status(400).json({ error, message: "Problème d'enregistrement de l'utilisateur" });
+                });
+        })
+        .catch(error => {
+            console.error('Erreur lors du hashage du mot de passe:', error);
+            res.status(500).json({ error, message: "Problème à la création du compte utilisateur" });
+        });
+};
 
 //Controller pour la fonction log in
 exports.login = (req, res, next) => {
